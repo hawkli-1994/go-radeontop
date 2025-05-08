@@ -1,0 +1,55 @@
+{
+   "nvme-pci-20100":{
+      "Adapter": "PCI adapter",
+      "Composite":{
+         "temp1_input": 41.850,
+         "temp1_max": 80.850,
+         "temp1_min": -273.150,
+         "temp1_crit": 84.850,
+         "temp1_alarm": 0.000
+      },
+      "Sensor 1":{
+         "temp2_input": 60.850,
+         "temp2_max": 65261.850,
+         "temp2_min": -273.150
+      },
+      "Sensor 2":{
+         "temp3_input": 41.850,
+         "temp3_max": 65261.850,
+         "temp3_min": -273.150
+      }
+   },
+   "amdgpu-pci-0300":{
+      "Adapter": "PCI adapter",
+      "vddgfx":{
+         "in0_input": 0.702
+      },
+      "fan1":{
+         "fan1_input": 0.000,
+         "fan1_min": 0.000,
+         "fan1_max": 4100.000
+      },
+      "edge":{
+         "temp1_input": 33.000,
+         "temp1_crit": 100.000,
+         "temp1_crit_hyst": -273.150,
+         "temp1_emergency": 105.000
+      },
+      "junction":{
+         "temp2_input": 38.000,
+         "temp2_crit": 110.000,
+         "temp2_crit_hyst": -273.150,
+         "temp2_emergency": 115.000
+      },
+      "mem":{
+         "temp3_input": 42.000,
+         "temp3_crit": 105.000,
+         "temp3_crit_hyst": -273.150,
+         "temp3_emergency": 110.000
+      },
+      "PPT":{
+         "power1_average": 61.000,
+         "power1_cap": 241.000
+      }
+   }
+}

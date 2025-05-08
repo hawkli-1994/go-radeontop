@@ -1,6 +1,8 @@
 package hardware
 
 import (
+	"log/slog"
+
 	"github.com/hawkli-1994/go-radeontop/pkg/types"
 )
 
@@ -15,20 +17,7 @@ func NewDevice() (*Device, error) {
 	return &Device{}, nil
 }
 
-// GetStats retrieves current GPU statistics
-func (d *Device) GetStats() (*types.GPUStats, error) {
+func GetDeviceInfoList(logger *slog.Logger) (*types.DeviceInfoList, error) {
 	// TODO: Implement actual hardware monitoring
-	return &types.GPUStats{}, nil
-}
-
-// GetDeviceInfo retrieves static device information
-func (d *Device) GetDeviceInfo() (*types.DeviceInfo, error) {
-	// TODO: Implement device info retrieval
-	return &types.DeviceInfo{}, nil
-}
-
-// Close releases device resources
-func (d *Device) Close() error {
-	// TODO: Implement cleanup
-	return nil
+	return types.NewDeviceInfoList(logger)
 }

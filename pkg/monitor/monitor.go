@@ -1,6 +1,8 @@
 package monitor
 
 import (
+	"log/slog"
+
 	"github.com/hawkli-1994/go-radeontop/internal/hardware"
 	"github.com/hawkli-1994/go-radeontop/pkg/types"
 )
@@ -8,10 +10,11 @@ import (
 // Monitor represents an AMD GPU monitoring instance
 type Monitor struct {
 	device *hardware.Device
+	logger *slog.Logger
 }
 
 // New creates a new Monitor instance
-func New() (*Monitor, error) {
+func New(logger *slog.Logger) (*Monitor, error) {
 	dev, err := hardware.NewDevice()
 	if err != nil {
 		return nil, err
@@ -22,17 +25,6 @@ func New() (*Monitor, error) {
 	}, nil
 }
 
-// GetStats returns current GPU statistics
-func (m *Monitor) GetStats() (*types.GPUStats, error) {
-	return m.device.GetStats()
-}
-
-// GetDeviceInfo returns static information about the GPU
-func (m *Monitor) GetDeviceInfo() (*types.DeviceInfo, error) {
-	return m.device.GetDeviceInfo()
-}
-
-// Close releases any resources used by the monitor
-func (m *Monitor) Close() error {
-	return m.device.Close()
+func (m *Monitor) GetDeviceInfoList() (*types.DeviceInfoList, error) {
+	return hardware.GetDeviceInfoList(m.logger)
 }
