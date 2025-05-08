@@ -15,6 +15,10 @@ type Monitor struct {
 
 // New creates a new Monitor instance
 func New(logger *slog.Logger) (*Monitor, error) {
+	if logger == nil {
+		logger = slog.Default()
+	}
+
 	dev, err := hardware.NewDevice()
 	if err != nil {
 		return nil, err
@@ -22,9 +26,13 @@ func New(logger *slog.Logger) (*Monitor, error) {
 
 	return &Monitor{
 		device: dev,
+		logger: logger,
 	}, nil
 }
 
 func (m *Monitor) GetDeviceInfoList() (*types.DeviceInfoList, error) {
+	if m.logger == nil {
+		m.logger = slog.Default()
+	}
 	return hardware.GetDeviceInfoList(m.logger)
 }

@@ -200,13 +200,13 @@ func NewDeviceInfo(name string, logger *slog.Logger, sensors *sensorsOutput) *De
 		return nil
 	}
 
-	memoryUsageCmd := exec.Command("cat", filepath.Join(path, "mem_info_vram_used"))
-	memoryUsage, err := memoryUsageCmd.Output()
+	memoryUsedCmd := exec.Command("cat", filepath.Join(path, "mem_info_vram_used"))
+	memoryUsed, err := memoryUsedCmd.Output()
 	if err != nil {
 		logger.Error("failed to get memory usage", "error", err)
 		return nil
 	}
-	memoryUsageInt, err := strconv.Atoi(strings.TrimSpace(string(memoryUsage)))
+	memoryUsedInt, err := strconv.Atoi(strings.TrimSpace(string(memoryUsed)))
 	if err != nil {
 		logger.Error("failed to convert memory usage to int", "error", err)
 		return nil
@@ -231,9 +231,9 @@ func NewDeviceInfo(name string, logger *slog.Logger, sensors *sensorsOutput) *De
 		SensorName: SensorName,
 		Stats: &GPUStats{
 			GPUUsage:         float64(gpuUsageInt),
-			MemoryUsage:      float64(memoryUsageInt),
+			MemoryUsage:      float64(memoryUsedInt) / float64(memoryTotalInt) * 100,
 			VRAMTotal:        uint64(memoryTotalInt),
-			VRAMUsed:         uint64(memoryUsageInt),
+			VRAMUsed:         uint64(memoryUsedInt),
 			ClockSpeed:       0,
 			MemoryClockSpeed: 0,
 			GpuTempEdge:      sensor.Edge.Temp1_input,

@@ -35,13 +35,15 @@ func main() {
 			continue
 		}
 
+		gpuStats := stats.Items[0].Stats
 		fmt.Printf("\033[2K\r") // Clear line
-		fmt.Printf("GPU: %.1f%% | MemoryUsed: %.1f%% | MEMTotal: %.1f%% | TempEdge: %d°C | TempMem: %d°C | TempJunction : %d°C |",
-			stats.Items[0].Stats.GPUUsage,
-			stats.Items[0].Stats.MemoryUsage,
-			stats.Items[0].Stats.VRAMTotal,
-			stats.Items[0].Stats.GpuTempEdge,
-			stats.Items[0].Stats.GpuTempMem,
-			stats.Items[0].Stats.GpuTempJunction)
+		fmt.Printf("GPU: %.1f%% | MemoryUsage: %.1f%% | VRAM: %d/%d | Temp: Edge:%.1f°C Mem:%.1f°C Junction:%.1f°C",
+			gpuStats.GPUUsage,
+			gpuStats.MemoryUsage,
+			gpuStats.VRAMUsed,
+			gpuStats.VRAMTotal,
+			gpuStats.GpuTempEdge,
+			gpuStats.GpuTempMem,
+			gpuStats.GpuTempJunction)
 	}
 }

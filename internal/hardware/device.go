@@ -18,6 +18,8 @@ func NewDevice() (*Device, error) {
 }
 
 func GetDeviceInfoList(logger *slog.Logger) (*types.DeviceInfoList, error) {
-	// TODO: Implement actual hardware monitoring
+	if logger == nil {
+		logger = slog.Default()
+	}
 	return types.NewDeviceInfoList(logger)
 }
